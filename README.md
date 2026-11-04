@@ -89,4 +89,7 @@ pwsh -File tools/check.ps1
 它会检查：禁用写法是否回流、`〔D-xx〕` 与 `A-xx` 引用是否落地、内部链接是否死链、编号是否重复、
 几处硬约定数字是否还在。全绿再提交。
 
+**换行符统一 LF**。`.gitattributes` 已设 `text=auto eol=lf`，本仓库另设 `core.autocrlf=false`、`core.eol=lf`；
+`tools/check.ps1` 会把任何 CRLF 文件报出来。Windows 编辑器请设成 LF，别让它改回去。
+
 一次提交只做一件事：改专名、补设定、改正文，分开提交。

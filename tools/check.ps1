@@ -71,6 +71,11 @@ for($i=0; $i -lt $t11.Count; $i++){
   }
 }
 
+# 4.5 换行符统一 LF
+Get-ChildItem -Recurse -File $root | Where-Object { $_.FullName -notmatch '\\\.git\\' } | ForEach-Object {
+  $b=[System.IO.File]::ReadAllBytes($_.FullName)
+  if($b -contains 13){ $problems.Add("$($_.Name) 含 CRLF，需转为 LF") }
+}
 # 5. 关键数字一致性（人工约定的硬数）
 $hard = @{
   '02-编年史.md'   = @('四十六年');
